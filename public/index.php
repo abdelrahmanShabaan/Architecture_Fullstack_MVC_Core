@@ -1,15 +1,15 @@
 <?php
+session_start();
 
-use Mono\Http\Request;
-use Mono\Http\Response;
-use Mono\Http\Route;
+use Dotenv\Dotenv;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/../routes/web.php';
+require_once __DIR__ . '/../src/Support/helpers.php';
+require_once base_path() . 'vendor/autoload.php';
+require_once base_path() . 'routes/web.php';
+
+$env = Dotenv::createImmutable(base_path());
+
+$env->load();
 
 
-
-$route = new Route(new Request, new Response);
-
-dump($route->request->path());
-
+app()->run();
